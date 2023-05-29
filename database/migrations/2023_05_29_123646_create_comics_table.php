@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('series', 30);
             $table->date('sale_date');
             $table->timestamps();
-            $table->save();
         });
     }
 
