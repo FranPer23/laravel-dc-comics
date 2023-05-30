@@ -21,12 +21,8 @@ class ComicsTableSeeder extends Seeder
 
         foreach ($comics_array as $comic_item) {
             $comic = new Comic();
-            $comic->title = $comic_item['titolo'];
-            $comic->description = $comic_item['descrizione'];
-            $comic->type = $comic_item['tipo'];
-            $comic->thumb = $comic_item['prezzo'];
-            $comic->price = $comic_item['serie'];
-            $comic->sale_date = $comic_item['data di vendita'];
+
+            $comic->fill($comic_item);
             $comic->save();
         }
     }
