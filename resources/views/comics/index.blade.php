@@ -21,13 +21,19 @@
                             <td>{{ $comic->title }}</td>
                             <td>{{ $comic->type }}</td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('comics.show', $comic->id) }}><i class="fa-regular
-                                    fa-eye"></i></a>
-                                <a class="btn btn-warning" href="{{ route('comics.edit', $comic->id) }}><i class="fa-regular
+                                <a class="btn btn-primary" href="{{ route('comics.show', $comic->id) }}">
+                                    <i class="fa-regular fa-eye"></i></a>
+                                <a class="btn btn-warning" href="{{ route('comics.edit', $comic->id) }}"><i
+                                        class="fa-regular
                                     fa-pen-to-square"></i></a>
-                                <a class="btn btn-danger"
-                                    href="{{ route('comics.destroy', $comic->id) }}><i class="fa-regular
-                                    fa-trash-can"></i></a>
+                                <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-delete"
+                                        data-comic-title='{{ $comic->title }}'><i
+                                            class="fa-regular
+                                    fa-trash-can"></i></button>
+                                </form>
                                 <div>
                                     <a href="{{ route('comics.create') }}">Crea un fumetto</a>
                                 </div>
