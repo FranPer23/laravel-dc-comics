@@ -42,7 +42,7 @@ class ComicController extends Controller
         $comic->fill($data);
         $comic->save();
 
-        return redirect()->route('comics.show', $comic->id);
+        return redirect()->route('comics.index', $comic->id);
     }
 
     /**
@@ -65,7 +65,8 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
