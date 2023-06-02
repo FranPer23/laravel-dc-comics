@@ -42,7 +42,7 @@ class ComicController extends Controller
         $comic->fill($data);
         $comic->save();
 
-        return redirect()->route('comics.index', $comic->id);
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -78,7 +78,10 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $comic = Comic::findOrFail($id);
+        $comic->update($data);
+        return redirect()->route('comics.index');
     }
 
     /**

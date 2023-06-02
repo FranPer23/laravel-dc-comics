@@ -20,6 +20,10 @@
                 <input type="text" class="form-control" id="title" name="title">
             </div>
 
+            <div class="mb-3">
+                <label for="series" class="form-label">Serie</label>
+                <input type="text" class="form-control" id="series" name="series">
+            </div>
 
             <div class="mb-3">
                 <label for="type" class="form-label">Tipologia</label>
