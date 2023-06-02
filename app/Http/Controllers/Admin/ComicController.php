@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Nette\Utils\Validators;
 
 class ComicController extends Controller
 {
@@ -35,7 +38,7 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
         $data = $request->all();
         $comic = new Comic();
@@ -76,7 +79,7 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, $id)
     {
         $data = $request->all();
         $comic = Comic::findOrFail($id);
@@ -96,4 +99,24 @@ class ComicController extends Controller
         $comic->delete();
         return redirect()->route('comics.index');
     }
+
+    // private function validation($data)
+    // {
+    //     $validator = Validators::make(
+    //         $data,
+    //         [
+
+    //             'title' => 'required|min:5|max:30',
+    //             'type' => 'required|min:5',
+    //             'price' => 'required',
+    //             'description' => 'nullable'
+
+    //         ],
+    //         [
+    //             'title.required' => 'Il titolo è obbligatorio',
+    //             'type.required' => 'Il tipo è obbligatorio',
+    //             'price.required' => 'Il prezzo deve essere indicato'
+    //         ]
+    //     );
+    // }
 }
