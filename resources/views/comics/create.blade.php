@@ -3,18 +3,25 @@
 @section('content')
     <div class="container">
         <h2 class="text-center">Crea un fumetto</h2>
-
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{ route('comics.store') }}" method="POST">
             @csrf
 
-
-
             <div class="mb-3">
                 <label for="thumb" class="form-label">Cover</label>
-                <input type="text" class="form-control" id="thumb" name="thumb">
-
-            </div>
-
+                <input type="text" class="form-control" id="thumb" @error('thumb') is-invalid @enderror name="thumb">
+                @error('thumb')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                </div>
+            @enderror
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" class="form-control" id="title" name="title">
